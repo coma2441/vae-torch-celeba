@@ -180,7 +180,7 @@ def save_sample_images(model, device, epoch, num_samples=16):
 def main():
     """Main training function"""
     # Configuration
-    EPOCHS = 200
+    EPOCHS = 800  # Extended from 200 to 800 epochs
     BATCH_SIZE = 64
     CELEBA_DIR = './data/celeba/img_align_celeba/'
     LEARNING_RATE = 1e-3
@@ -263,7 +263,7 @@ def main():
         test_loss = test_model(model, device, test_loader)
         
         # Create visualizations every 20 epochs for longer training, or at key milestones
-        if epoch == start_epoch or epoch % 20 == 0 or epoch in [30, 50, 100]:
+        if epoch == start_epoch or epoch % 20 == 0 or epoch in [30, 50, 100, 150, 250, 300, 350]:
             print(f"🎨 Creating visualization checkpoint for epoch {epoch}...")
             save_sample_images(model, device, epoch)
         

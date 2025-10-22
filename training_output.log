@@ -1,0 +1,51 @@
+🚀 Starting VAE Training with Visualization Checkpoints
+=======================================================
+📁 Working directory: /Users/changkyuchoi/Documents/GitHub/vae-torch-celeba
+🔧 Environment: PYTORCH_ENABLE_MPS_FALLBACK=1
+
+✅ Environment checks passed
+
+📂 Created output directories
+
+🎯 Starting training with visualization checkpoints...
+   • Epoch 1: Initial checkpoint
+   • Every 10 epochs: Progress checkpoints
+   • Final: Comprehensive visualization
+
+💡 Training will create:
+   📁 models/vae_trained_from_scratch.pth
+   📁 outputs/training_progress/epoch_*
+
+⏰ Started at: Wed Oct 22 22:00:06 CEST 2025
+
+🚀 Using MPS (Apple Silicon GPU)
+📁 Loading dataset...
+Found 10000 images
+📊 Train samples: 8000, Test samples: 2000
+🏗️ Creating model...
+📥 Found checkpoint: models/training_checkpoint.pth
+🔄 Resuming from epoch 41, best loss: 625.2886
+🎯 Model has 8077155 parameters
+📈 Training epochs 41-800 with batch size 64
+/Users/changkyuchoi/Documents/GitHub/vae-torch-celeba/.venv/lib/python3.13/site-packages/torch/autograd/graph.py:841: UserWarning: The operator 'aten::_upsample_bilinear2d_aa_backward.grad_input' is not currently supported on the MPS backend and will fall back to run on the CPU. This may have performance implications. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/mps/MPSFallback.mm:15.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+Epoch 41, Batch 0/125, Loss: 469.422821
+Epoch 41, Batch 50/125, Loss: 476.090027
+Epoch 41, Batch 100/125, Loss: 437.256592
+====> Epoch 41: Avg loss: 459.8490, Recon: 457.3727, KLD: 9904.9989
+====> Test set loss: 455.9872
+🎨 Creating visualization checkpoint for epoch 41...
+📸 Epoch 41 visualizations saved to outputs/training_progress/
+💾 Saved best model with test loss: 455.9872
+⏱️ Epoch 41 completed in 83.8s
+------------------------------------------------------------
+Epoch 42, Batch 0/125, Loss: 439.156311
+Epoch 42, Batch 50/125, Loss: 471.791962
+Epoch 42, Batch 100/125, Loss: 450.358734
+====> Epoch 42: Avg loss: 448.1938, Recon: 445.6694, KLD: 10097.7843
+====> Test set loss: 489.8144
+⏱️ Epoch 42 completed in 89.7s
+------------------------------------------------------------
+Epoch 43, Batch 0/125, Loss: 421.337982
+Epoch 43, Batch 50/125, Loss: 530.878235
+Epoch 43, Batch 100/125, Loss: 432.364929
