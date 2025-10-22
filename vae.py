@@ -1,4 +1,4 @@
-# based on https://github.com/AntixK/PyTorch-VAE/blob/master/models/vanilla_vae.py
+# Original VAE architecture compatible with pre-trained model
 import torch
 from torch import nn
 from torchvision import transforms
@@ -7,10 +7,13 @@ CELEB_PATH = './data/'
 IMAGE_SIZE = 150
 LATENT_DIM = 128
 image_dim = 3 * IMAGE_SIZE * IMAGE_SIZE  # 67500
-print('\nCELEB_PATH', CELEB_PATH, 
-      'IMAGE_SIZE', IMAGE_SIZE, 
-      'LATENT_DIM', LATENT_DIM, 
-      'image_dim', image_dim)
+
+# Only print when this file is run directly, not when imported
+if __name__ == "__main__":
+    print('\nCELEB_PATH', CELEB_PATH, 
+          'IMAGE_SIZE', IMAGE_SIZE, 
+          'LATENT_DIM', LATENT_DIM, 
+          'image_dim', image_dim)
 
 celeb_transform = transforms.Compose([
     transforms.Resize(IMAGE_SIZE, antialias=True),
@@ -23,6 +26,7 @@ celeb_transform1 = transforms.Compose([
 
 
 class VAE(nn.Module):
+    """Original VAE architecture compatible with pre-trained model"""
     def __init__(self):
         super(VAE, self).__init__()
 
@@ -107,3 +111,26 @@ class VAE(nn.Module):
         mu, log_var = self.encode(x)
         z = self.reparameterize(mu, log_var)
         return self.decode(z), mu, log_var
+
+
+if __name__ == "__main__":
+    # Test the original VAE
+    print("Testing original VAE architecture...")
+    
+    device = torch.device("cpu")  # Use CPU for compatibility
+    print(f"Using device: {device}")
+    
+    model = VAE().to(device)
+    
+    # Test with random input
+    test_input = torch.randn(2, 3, IMAGE_SIZE, IMAGE_SIZE).to(device)
+    
+    with torch.no_grad():
+        output, mu, log_var = model(test_input)
+        print(f"✅ Forward pass successful!")
+        print(f"Input shape: {test_input.shape}")
+        print(f"Output shape: {output.shape}")
+        print(f"Mu shape: {mu.shape}")
+        print(f"Log_var shape: {log_var.shape}")
+        
+    print("🎉 Original VAE is working!")
