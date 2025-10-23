@@ -3,7 +3,7 @@ import torch
 from torch import nn
 from torchvision import transforms
 
-CELEB_PATH = './data/'
+CELEB_PATH = './data/celeba/'
 IMAGE_SIZE = 150
 LATENT_DIM = 128
 image_dim = 3 * IMAGE_SIZE * IMAGE_SIZE  # 67500

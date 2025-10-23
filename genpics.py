@@ -1,14 +1,16 @@
 import torch
-from torchvision.datasets import CelebA
 from torch.utils.data import DataLoader
 from torchvision.utils import save_image
 from vae import IMAGE_SIZE, celeb_transform, CELEB_PATH
+from custom_dataset import SimpleCelebADataset
+import os
 
 MODEL_FILE = 'vae_model_20.pth'
 
-dataset = CelebA(CELEB_PATH, transform=celeb_transform, download=False, split='all')
+image_dir = os.path.join(CELEB_PATH, 'img_align_celeba')
+dataset = SimpleCelebADataset(image_dir, transform=celeb_transform, split='all')
 loader = DataLoader(dataset=dataset, batch_size=1, shuffle=True)
-model = torch.load(MODEL_FILE, map_location='cpu')
+model = torch.load(MODEL_FILE, map_location='cpu', weights_only=False)
 
 for pic, _ in loader:  # batch size is 1, loader is shuffled, so this gets one random pic
     pics = pic.to('cpu')

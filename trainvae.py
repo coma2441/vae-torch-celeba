@@ -12,6 +12,7 @@ from torch.utils.data import DataLoader
 # project modules
 from utils import print, rndstr
 from vae import VAE, IMAGE_SIZE, LATENT_DIM, CELEB_PATH, image_dim, celeb_transform
+from custom_dataset import SimpleCelebADataset
 
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 
@@ -26,8 +27,9 @@ mkdir(directory)
 print(directory)
 
 # download dataset
-train_dataset = CelebA(CELEB_PATH, transform=celeb_transform, download=False, split='train')
-test_dataset = CelebA(CELEB_PATH, transform=celeb_transform, download=False, split='valid') # or 'test'
+image_dir = os.path.join(CELEB_PATH, 'img_align_celeba')
+train_dataset = SimpleCelebADataset(image_dir, transform=celeb_transform, split='train')
+test_dataset = SimpleCelebADataset(image_dir, transform=celeb_transform, split='valid')
 
 # create train and test dataloaders
 train_loader = DataLoader(dataset=train_dataset, batch_size=BATCH_SIZE, shuffle=True)
